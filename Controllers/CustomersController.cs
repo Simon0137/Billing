@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Billing.Utils;
 
-namespace AngularBackend.Controllers
+namespace Billing.Controllers
 {
     [ApiController]
     [Route("/api/[controller]")]

@@ -1,4 +1,4 @@
-﻿namespace AngularBackend
+﻿namespace Billing
 {
     public class Customer
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace AngularBackend
+namespace Billing.Utils
 {
     public class DatabaseContext : DbContext
     {

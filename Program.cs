@@ -1,3 +1,6 @@
+using Billing.Utils;
+using Microsoft.EntityFrameworkCore;
+
 namespace Billing
 {
     public class Program
@@ -9,6 +12,10 @@ namespace Billing
             // Add services to the container.
 
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<DatabaseContext>(options =>
+            {
+                options.UseSqlite(builder.Configuration.GetConnectionString("ApplicationDb"));
+            });
 
             var app = builder.Build();
 

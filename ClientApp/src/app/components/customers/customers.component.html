@@ -1,0 +1,18 @@
+<h1 id="tableLabel">Customers Table</h1>
+
+<p *ngIf="!customers?.length"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="customers.length">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let customer of customers">
+      <td>{{ customer.id }}</td>
+      <td>{{ customer.name }}</td>
+    </tr>
+  </tbody>
+</table>

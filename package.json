@@ -1,0 +1,8 @@
+{
+  "name": "billing",
+  "version": "0.0.0",
+  "scripts": {
+    "watch": "cd ClientApp&&ng build --watch --configuration development"
+  },
+  "private": true
+}

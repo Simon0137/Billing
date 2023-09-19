@@ -4,51 +4,48 @@ using Billing.Utils;
 
 namespace Billing.Controllers
 {
-    [ApiController]
-    [Route("/api/[controller]")]
-    public class CustomersController : ControllerBase
+    public class CustomersController : AppController
     {
-        private readonly DatabaseContext _db;
-
-        public CustomersController(DatabaseContext db)
+        public CustomersController(DatabaseContext db) : base(db)
         {
-            this._db = db;
         }
 
         [HttpGet]
         public Task<Customer[]> GetCustomersAsync(CancellationToken cancellationToken = default)
         {
-            return _db.Customers.ToArrayAsync(cancellationToken);
+            return Db.Customers.ToArrayAsync(cancellationToken);
         }
 
         [HttpGet("{id}")]
         public Task<Customer?> GetCustomerByIdAsync([FromRoute] int id, CancellationToken cancellationToken = default)
         {
-            return _db.Customers.FirstOrDefaultAsync(customer => customer.Id == id, cancellationToken);
+            return Db.Customers.FirstOrDefaultAsync(customer => customer.Id == id, cancellationToken);
         }
 
         [HttpPost]
-        public async Task AddCustomerAsync([FromBody] Customer customer, CancellationToken cancellationToken = default)
+        public async Task<Customer> AddCustomerAsync([FromBody] Customer customer, CancellationToken cancellationToken = default)
         {
-            await _db.Customers.AddAsync(customer, cancellationToken);
-            await _db.SaveChangesAsync(cancellationToken);
+            Db.Entry(customer).State = EntityState.Added;
+            await Db.SaveChangesAsync(cancellationToken);
+            return customer;
         }
 
         [HttpPut]
-        public async Task EditCustomerAsync([FromBody] Customer customer, CancellationToken cancellationToken = default)
+        public async Task<Customer> EditCustomerAsync([FromBody] Customer customer, CancellationToken cancellationToken = default)
         {
-            await _db.Customers.AddAsync(customer, cancellationToken);
-            await _db.SaveChangesAsync(cancellationToken);
+            Db.Entry(customer).State = EntityState.Modified;
+            await Db.SaveChangesAsync(cancellationToken);
+            return customer;
         }
 
         [HttpDelete("{id}")]
         public async Task DeleteCustomerByIdAsync([FromRoute] int id, CancellationToken cancellationToken = default)
         {
-            var customer = await _db.Customers.FindAsync(id, cancellationToken);
+            var customer = await Db.Customers.FindAsync(id, cancellationToken);
             if (customer != null)
             {
-                _db.Customers.Remove(customer);
-                await _db.SaveChangesAsync(cancellationToken);
+                Db.Customers.Remove(customer);
+                await Db.SaveChangesAsync(cancellationToken);
             }
         }
     }

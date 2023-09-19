@@ -27,14 +27,29 @@ namespace Billing.Controllers
             return _db.Customers.FirstOrDefaultAsync(customer => customer.Id == id, cancellationToken);
         }
 
-        /*public Task AddCustomerAsync(Customer customer, CancellationToken cancellationToken = default)
+        [HttpPost]
+        public async Task AddCustomerAsync([FromBody] Customer customer, CancellationToken cancellationToken = default)
         {
-            return _db.Customers.AddAsync(customer, cancellationToken);
+            await _db.Customers.AddAsync(customer, cancellationToken);
+            await _db.SaveChangesAsync(cancellationToken);
         }
 
-        public Task DeleteCustomerAsync(Customer customer, CancellationToken cancellationToken = default)
+        [HttpPut]
+        public async Task EditCustomerAsync([FromBody] Customer customer, CancellationToken cancellationToken = default)
         {
-            _db.Customers.RemoveAsync(customer, cancellationToken);
-        }*/
+            await _db.Customers.AddAsync(customer, cancellationToken);
+            await _db.SaveChangesAsync(cancellationToken);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task DeleteCustomerByIdAsync([FromRoute] int id, CancellationToken cancellationToken = default)
+        {
+            var customer = await _db.Customers.FindAsync(id, cancellationToken);
+            if (customer != null)
+            {
+                _db.Customers.Remove(customer);
+                await _db.SaveChangesAsync(cancellationToken);
+            }
+        }
     }
 }

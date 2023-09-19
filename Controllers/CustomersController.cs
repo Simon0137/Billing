@@ -27,7 +27,7 @@ namespace Billing.Controllers
             return _db.Customers.FirstOrDefaultAsync(customer => customer.Id == id, cancellationToken);
         }
 
-        public Task AddCustomerAsync(Customer customer, CancellationToken cancellationToken = default)
+        /*public Task AddCustomerAsync(Customer customer, CancellationToken cancellationToken = default)
         {
             return _db.Customers.AddAsync(customer, cancellationToken);
         }
@@ -35,6 +35,6 @@ namespace Billing.Controllers
         public Task DeleteCustomerAsync(Customer customer, CancellationToken cancellationToken = default)
         {
             _db.Customers.RemoveAsync(customer, cancellationToken);
-        }
+        }*/
     }
 }

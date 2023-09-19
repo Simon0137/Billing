@@ -22,8 +22,19 @@ namespace Billing.Controllers
         }
 
         [HttpGet("{id}")]
-        public Task<Customer?> GetCustomerByIdAsync([FromRoute] int id, CancellationToken cancellationToken = default) =>
-            _db.Customers.FirstOrDefaultAsync(customer => customer.Id == id, cancellationToken);
+        public Task<Customer?> GetCustomerByIdAsync([FromRoute] int id, CancellationToken cancellationToken = default)
+        {
+            return _db.Customers.FirstOrDefaultAsync(customer => customer.Id == id, cancellationToken);
+        }
 
+        public Task AddCustomerAsync(Customer customer, CancellationToken cancellationToken = default)
+        {
+            return _db.Customers.AddAsync(customer, cancellationToken);
+        }
+
+        public Task DeleteCustomerAsync(Customer customer, CancellationToken cancellationToken = default)
+        {
+            _db.Customers.RemoveAsync(customer, cancellationToken);
+        }
     }
 }

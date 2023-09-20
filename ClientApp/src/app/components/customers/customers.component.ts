@@ -10,7 +10,7 @@ export class CustomersComponent {
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
 
-    http.get<Customers[]>('http://localhost:44444/api/customers').subscribe(result => {
+    http.get<Customers[]>(baseUrl + 'api/customers').subscribe(result => {
       this.customers = result;
     }, error => console.error(error));
 

@@ -1,23 +1,39 @@
 import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Customer } from '../../types/customer';
+import { HttpService } from '../../services/http.service';
+import { error } from 'console';
 
 @Component({
   selector: 'app-customers',
-  templateUrl: './customers.component.html'
+  templateUrl: './customers.component.html',
+  providers: [HttpService]
 })
 export class CustomersComponent {
-  public customers: Customers[] = [];
+  public customers: Customer[] = [];
+  private _baseUrl: string;
+  private _httpService: HttpService;
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  constructor(httpService: HttpService, @Inject('BASE_URL') baseUrl: string) {
+    /*http.get<Customer[]>(baseUrl + 'api/customers').subscribe(result => {
+      this.customers = result;
+    }, error => console.error(error));*/
+    this._baseUrl = baseUrl;
+    this._httpService = httpService;
 
-    http.get<Customers[]>(baseUrl + 'api/customers').subscribe(result => {
+    this.getCustomers();
+  }
+
+  deleteCustomer(id: number) {
+    debugger;
+    this._httpService.deleteData(this._baseUrl + 'api/customers', id);
+    this.getCustomers();
+  }
+
+  getCustomers() {
+    this._httpService.getData<Customer[]>(this._baseUrl + 'api/customers').subscribe(result => {
       this.customers = result;
     }, error => console.error(error));
-
   }
 }
 
-interface Customers {
-  id: number;
-  name: string;
-}
+

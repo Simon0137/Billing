@@ -14,7 +14,8 @@
     <tr *ngFor="let customer of customers">
       <td>{{ customer.id }}</td>
       <td>{{ customer.name }}</td>
-      <td><input type="button" name="delete-customer" value="-"/></td>
+      <td><span (click)="deleteCustomer(customer.id)">Delete</span></td>
+      <td><input type="button" name="delete-customer" value="-" (click)="deleteCustomer(customer.id)"/></td>
     </tr>
   </tbody>
 </table>

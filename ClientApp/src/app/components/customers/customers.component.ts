@@ -1,33 +1,27 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { Customer } from '../../types/customer';
-import { HttpService } from '../../services/http.service';
-import { lastValueFrom } from 'rxjs';
+import { CustomersService } from '../../services/customers.service';
 
 @Component({
   selector: 'app-customers',
   templateUrl: './customers.component.html',
-  providers: [HttpService]
+  providers: [CustomersService]
 })
 export class CustomersComponent {
   public customers?: Customer[];
-  private _baseUrl: string;
-  private _httpService: HttpService;
 
-  constructor(httpService: HttpService, @Inject('BASE_URL') baseUrl: string) {
-    this._baseUrl = baseUrl;
-    this._httpService = httpService;
-
-    this.getCustomers();
+  constructor(private customersService: CustomersService) {
+    this.updateCustomersAsync();
   }
 
-  async deleteCustomer(id: number) {
-    await lastValueFrom(this._httpService.deleteData(this._baseUrl + 'api/customers', id));
-    await this.getCustomers();
+  public async deleteCustomerAsync(id: number) {
+    await this.customersService.deleteCustomerAsync(id);
+    await this.updateCustomersAsync();
   }
 
-  async getCustomers() {
+  public async updateCustomersAsync() {
     this.customers = undefined;
-    this.customers = await lastValueFrom(this._httpService.getData<Customer[]>(this._baseUrl + 'api/customers'));
+    this.customers = await this.customersService.loadCustomersAsync();
   }
 }
 

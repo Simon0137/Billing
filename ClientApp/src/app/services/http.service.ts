@@ -11,9 +11,15 @@ export class HttpService {
     return this.http.get<T>(url);
   }
 
+  public postData(url: string, id: number) {
+    return this.http.post(url+'/'+id, {
+      //params: new HttpParams().set('id', id)
+    });
+  }
+
   public deleteData(url: string, id: number) {
-    return this.http.delete(url, {
-      params: new HttpParams().set('id', id)
+    return this.http.delete(`${url}/${id}`, {
+      //params: new HttpParams().set('id', id)
     });
   }
 }

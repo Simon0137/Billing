@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Customer } from '../../types/customer';
 import { CustomersService } from '../../services/customers.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customers',
@@ -10,10 +11,13 @@ import { CustomersService } from '../../services/customers.service';
 export class CustomersComponent {
   public customers?: Customer[];
 
-  constructor(private customersService: CustomersService) {
+  constructor(private customersService: CustomersService, private router: Router) {
     this.updateCustomersAsync();
   }
 
+  public goTo(route: string) {
+    this.router.navigate([route]);
+  }
   public async addCustomerAsync(customer: Customer) {
     await this.customersService.addCustomerAsync(customer);
   }

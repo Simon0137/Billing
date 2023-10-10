@@ -13,8 +13,8 @@ export class AddFormComponent {
 
   constructor(private customersService: CustomersService, private router: Router) { }
 
-  public addCustomer() {
-    this.customersService.addCustomerAsync(new Customer(0, this.customerName));
+  public async addCustomer() {
+    await this.customersService.addCustomerAsync(new Customer(0, this.customerName));
     this.router.navigate(['']);
   }
 }

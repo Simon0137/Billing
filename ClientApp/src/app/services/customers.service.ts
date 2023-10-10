@@ -8,8 +8,8 @@ export class CustomersService {
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
-  async addCustomerAsync(customer: Customer): Promise<void> {
-    await lastValueFrom(this.http.post(`${this.baseUrl}api/customers`, customer));
+  async addCustomerAsync(customer: Customer): Promise<Customer> {
+    return await lastValueFrom(this.http.post<Customer>(`${this.baseUrl}api/customers`, customer));
   }
 
   async loadCustomersAsync(): Promise<Customer[]> {

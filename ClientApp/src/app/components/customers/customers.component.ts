@@ -20,6 +20,7 @@ export class CustomersComponent {
   }
   public async addCustomerAsync(customer: Customer) {
     await this.customersService.addCustomerAsync(customer);
+    await this.updateCustomersAsync();
   }
 
   public async deleteCustomerAsync(id: number) {

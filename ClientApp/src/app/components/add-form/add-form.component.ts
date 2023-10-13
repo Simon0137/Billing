@@ -17,4 +17,8 @@ export class AddFormComponent {
     await this.customersService.addCustomerAsync(new Customer(0, this.customerName));
     this.router.navigate(['']);
   }
+
+  public async cancel() {
+    this.router.navigate(['']);
+  }
 }

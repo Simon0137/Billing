@@ -4,11 +4,11 @@ import { CustomersService } from '../../../services/customers.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-customers',
-  templateUrl: './customers.component.html',
+  selector: 'app-customers-table',
+  templateUrl: './customers-table.component.html',
   providers: [CustomersService]
 })
-export class CustomersComponent {
+export class CustomersTableComponent {
   public customers?: Customer[];
 
   constructor(private customersService: CustomersService, private router: Router) {

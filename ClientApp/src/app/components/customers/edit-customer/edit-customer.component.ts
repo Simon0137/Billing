@@ -4,11 +4,11 @@ import { Customer } from '../../../types/customer';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-add-form',
-  templateUrl: './add-form.component.html',
+  selector: 'app-edit-customer',
+  templateUrl: './edit-customer.component.html',
   providers: [CustomersService]
 })
-export class AddFormComponent {
+export class EditCustomerComponent {
   public customerName = '';
 
   constructor(private customersService: CustomersService, private router: Router) { }

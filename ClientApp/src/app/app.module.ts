@@ -5,22 +5,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { CustomersComponent } from './components/customers/customers.component';
-import { AddFormComponent } from './components/add-form/add-form.component';
+import { CustomersTableComponent } from './components/customers/customers-table/customers-table.component';
+import { EditCustomerComponent } from './components/customers/edit-customer/edit-customer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CustomersComponent,
-    AddFormComponent
+    CustomersTableComponent,
+    EditCustomerComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: CustomersComponent, pathMatch: 'full' },
-      { path: 'form-add-customer', component: AddFormComponent}
+      { path: '', component: CustomersTableComponent, pathMatch: 'full' },
+      { path: 'edit-customer', component: EditCustomerComponent}
     ])
   ],
   providers: [],

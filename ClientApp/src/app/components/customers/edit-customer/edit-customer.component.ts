@@ -19,15 +19,15 @@ export class EditCustomerComponent {
     this._subscription = activatedRoute.params.subscribe(params => this.customerId = params['id']);
   }
 
-  public async submitChanges() {
+  public async submitChangesAsync() {
     if (this.customerId > 0) {
-      this.editCustomer();
+      await this.editCustomerAsync();
     } else {
-      this.addCustomer();
+      await this.addCustomerAsync();
     }
   }
 
-  public async cancel() {
+  public cancel() {
     this.location.back();
   }
 
@@ -40,12 +40,12 @@ export class EditCustomerComponent {
     }
   }
 
-  private async addCustomer() {
+  private async addCustomerAsync() {
     await this.customersService.addCustomerAsync(new Customer(0, this.customerName));
     this.location.back();
   }
 
-  private async editCustomer() {
+  private async editCustomerAsync() {
     await this.customersService.editCustomerAsync(new Customer(this.customerId, this.customerName));
     this.location.back();
   }

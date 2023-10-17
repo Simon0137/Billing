@@ -15,12 +15,12 @@ export class CustomersTableComponent {
     this.updateCustomersAsync();
   }
 
-  public addCustomer() {
-    this.router.navigate(['edit-customer']);
+  public async addCustomer() {
+    await this.router.navigate(['edit-customer']);
   }
 
   public async editCustomer(customerId: number) {
-    this.router.navigate(['edit-customer', customerId]);
+    await this.router.navigate(['edit-customer', customerId]);
   }
 
   public async deleteCustomerAsync(id: number) {

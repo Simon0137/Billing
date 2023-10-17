@@ -11,23 +11,42 @@ import { Subscription } from 'rxjs';
   providers: [CustomersService]
 })
 export class EditCustomerComponent {
-  public customerName = '';
-  public customerId: number | undefined;
+  public customerName: string = '';
+  public customerId: number = 0;
   private _subscription: Subscription;
 
   constructor(private customersService: CustomersService, private location: Location, private activatedRoute: ActivatedRoute) {
     this._subscription = activatedRoute.params.subscribe(params => this.customerId = params['id']);
-    if (this.customerId != 0) {
-      
+  }
+
+  public async submitChanges() {
+    if (this.customerId > 0) {
+      this.editCustomer();
+    } else {
+      this.addCustomer();
     }
   }
 
-  public async addCustomer() {
+  public async cancel() {
+    this.location.back();
+  }
+
+  public async getName(): Promise<string> {
+    if (this.customerId == 0) {
+      return '';
+    } else {
+      var customer = await this.customersService.loadCustomerAsync(this.customerId);
+      return customer.name;
+    }
+  }
+
+  private async addCustomer() {
     await this.customersService.addCustomerAsync(new Customer(0, this.customerName));
     this.location.back();
   }
 
-  public async cancel() {
+  private async editCustomer() {
+    await this.customersService.editCustomerAsync(new Customer(this.customerId, this.customerName));
     this.location.back();
   }
 }

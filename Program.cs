@@ -1,4 +1,4 @@
-using Billing.Utils;
+using Billing.Db;
 using Microsoft.EntityFrameworkCore;
 
 namespace Billing

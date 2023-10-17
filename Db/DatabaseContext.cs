@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Billing.Utils
+namespace Billing.Db
 {
     public class DatabaseContext : DbContext
     {

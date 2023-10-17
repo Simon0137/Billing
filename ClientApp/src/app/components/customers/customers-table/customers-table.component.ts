@@ -23,6 +23,11 @@ export class CustomersTableComponent {
     await this.updateCustomersAsync();
   }
 
+  public async editCustomerAsync(customer: Customer) {
+    await this.customersService.editCustomerAsync(customer);
+    await this.updateCustomersAsync();
+  }
+
   public async deleteCustomerAsync(id: number) {
     await this.customersService.deleteCustomerAsync(id);
     await this.updateCustomersAsync();

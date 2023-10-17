@@ -12,6 +12,10 @@ export class CustomersService {
     return await lastValueFrom(this.http.post<Customer>(`${this.baseUrl}api/customers`, customer));
   }
 
+  async editCustomerAsync(customer: Customer): Promise<Customer> {
+    return await lastValueFrom(this.http.put<Customer>(`${this.baseUrl}api/customers`, customer));
+  }
+
   async loadCustomersAsync(): Promise<Customer[]> {
     return await lastValueFrom(this.http.get<Customer[]>(`${this.baseUrl}api/customers`));
   }

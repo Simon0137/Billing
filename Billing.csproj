@@ -24,6 +24,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Billing.db" />
+    <None Remove="Billing.db-shm" />
+    <None Remove="Billing.db-wal" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ClientApp\.angular\" />
   </ItemGroup>
 

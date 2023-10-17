@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CustomersService } from '../../../services/customers.service';
-import { Customer } from '../../../types/customer';
+import { Customer } from '../../../models/customer';
 import { Location } from '@angular/common'
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -11,16 +11,24 @@ import { Subscription } from 'rxjs';
   providers: [CustomersService]
 })
 export class EditCustomerComponent {
-  public customerName: string = '';
-  public customerId: number = 0;
+  public model?: Customer;
   private _subscription: Subscription;
 
   constructor(private customersService: CustomersService, private location: Location, private activatedRoute: ActivatedRoute) {
-    this._subscription = activatedRoute.params.subscribe(params => this.customerId = params['id']);
+    this._subscription = activatedRoute.params.subscribe(params => this.loadCustomerAsync(params['id']));
+  }
+
+  private async loadCustomerAsync(id?: number) {
+    console.log('Loading customer: ', id);
+    if (id) {
+      this.model = await this.customersService.loadCustomerAsync(id) || { id: 0, name: '' };
+    } else {
+      this.model = { id: 0, name: '' };
+    }
   }
 
   public async submitChangesAsync() {
-    if (this.customerId > 0) {
+    if (this.model!.id > 0) {
       await this.editCustomerAsync();
     } else {
       await this.addCustomerAsync();
@@ -31,22 +39,13 @@ export class EditCustomerComponent {
     this.location.back();
   }
 
-  public async getName(): Promise<string> {
-    if (this.customerId == 0) {
-      return '';
-    } else {
-      var customer = await this.customersService.loadCustomerAsync(this.customerId);
-      return customer.name;
-    }
-  }
-
   private async addCustomerAsync() {
-    await this.customersService.addCustomerAsync(new Customer(0, this.customerName));
+    await this.customersService.addCustomerAsync(this.model!);
     this.location.back();
   }
 
   private async editCustomerAsync() {
-    await this.customersService.editCustomerAsync(new Customer(this.customerId, this.customerName));
+    await this.customersService.editCustomerAsync(this.model!);
     this.location.back();
   }
 }

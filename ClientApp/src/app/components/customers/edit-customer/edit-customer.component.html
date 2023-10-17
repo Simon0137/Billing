@@ -1,4 +1,9 @@
-<h3>Add new customer</h3>
-<p>Name: <input type="text" [(ngModel)]="customerName" /></p>
-<input type="button" value="Ok" (click)="submitChangesAsync()" />
-<input type="button" value="Cancel" (click)="cancel()" />
+<ng-container *ngIf="model">
+  <h3>Add new customer</h3>
+  <p>Name: <input type="text" [(ngModel)]="model.name" /></p>
+  <input type="button" value="Ok" (click)="submitChangesAsync()" />
+  <input type="button" value="Cancel" (click)="cancel()" />
+</ng-container>
+<ng-container *ngIf="!model">
+  <h3>Loading customer...</h3>
+</ng-container>

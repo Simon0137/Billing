@@ -20,6 +20,10 @@ export class CustomersService {
     return await lastValueFrom(this.http.get<Customer[]>(`${this.baseUrl}api/customers`));
   }
 
+  async loadCustomerAsync(id: number): Promise<Customer> {
+    return await lastValueFrom(this.http.get<Customer>(`${this.baseUrl}api/customers/${id}`))
+  }
+
   async deleteCustomerAsync(id: number): Promise<void> {
     await lastValueFrom(this.http.delete(`${this.baseUrl}api/customers/${id}`));
   }

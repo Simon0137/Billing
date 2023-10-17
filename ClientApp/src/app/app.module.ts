@@ -20,7 +20,7 @@ import { EditCustomerComponent } from './components/customers/edit-customer/edit
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: CustomersTableComponent, pathMatch: 'full' },
-      { path: 'edit-customer', component: EditCustomerComponent}
+      { path: 'edit-customer/:id', component: EditCustomerComponent}
     ])
   ],
   providers: [],

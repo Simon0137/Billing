@@ -8,7 +8,7 @@
       <th>Id</th>
       <th>Name</th>
       <th>
-          <input type="button" value="Add new customer" (click)="goTo('edit-customer')"/>
+          <input type="button" value="Add new customer" (click)="addCustomer()"/>
           <input type="button" value="Refresh" (click)="updateCustomersAsync()"/>
       </th>
     </tr>
@@ -18,7 +18,7 @@
       <td>{{ customer.id }}</td>
       <td>{{ customer.name }}</td>
       <td><input type="button" value="-" (click)="deleteCustomerAsync(customer.id)"/></td>
-      <td><input type="button" value="Edit customer" (click)=""/>></td>
+      <td><input type="button" value="Edit customer" (click)="editCustomer(customer.id)"/></td>
     </tr>
   </tbody>
 </table>

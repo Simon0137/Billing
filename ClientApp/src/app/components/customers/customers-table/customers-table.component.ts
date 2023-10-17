@@ -18,14 +18,13 @@ export class CustomersTableComponent {
   public goTo(route: string) {
     this.router.navigate([route]);
   }
-  public async addCustomerAsync(customer: Customer) {
-    await this.customersService.addCustomerAsync(customer);
-    await this.updateCustomersAsync();
+
+  public addCustomer() {
+    this.goTo('edit-customer');
   }
 
-  public async editCustomerAsync(customer: Customer) {
-    await this.customersService.editCustomerAsync(customer);
-    await this.updateCustomersAsync();
+  public async editCustomer(customerId: number) {
+    this.goTo(`edit-customer/${customerId}`);
   }
 
   public async deleteCustomerAsync(id: number) {

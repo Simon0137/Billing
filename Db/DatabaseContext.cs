@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Billing.Db.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Billing.Db
 {

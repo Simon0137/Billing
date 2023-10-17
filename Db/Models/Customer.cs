@@ -1,4 +1,4 @@
-﻿namespace Billing
+﻿namespace Billing.Db.Models
 {
     public class Customer
     {

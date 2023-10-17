@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Billing.Db;
+using Billing.Db.Models;
 
 namespace Billing.Controllers
 {

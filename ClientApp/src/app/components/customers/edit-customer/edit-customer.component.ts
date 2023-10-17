@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CustomersService } from '../../../services/customers.service';
 import { Customer } from '../../../types/customer';
-import { Router } from '@angular/router';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-edit-customer',
@@ -11,14 +11,14 @@ import { Router } from '@angular/router';
 export class EditCustomerComponent {
   public customerName = '';
 
-  constructor(private customersService: CustomersService, private router: Router) { }
+  constructor(private customersService: CustomersService, private location: Location) { }
 
   public async addCustomer() {
     await this.customersService.addCustomerAsync(new Customer(0, this.customerName));
-    this.router.navigate(['']);
+    this.location.back();
   }
 
   public async cancel() {
-    this.router.navigate(['']);
+    this.location.back();
   }
 }

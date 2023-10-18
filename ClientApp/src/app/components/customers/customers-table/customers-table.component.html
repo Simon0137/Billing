@@ -8,8 +8,8 @@
       <th>Id</th>
       <th>Name</th>
       <th>
-          <input type="button" value="Add new customer" (click)="addCustomerAsync()"/>
-          <input type="button" value="Refresh" (click)="updateCustomersAsync()"/>
+        <button (click)="addCustomerAsync()"><i class="fa-solid fa-user"></i> Add new customer</button>
+        <button (click)="updateCustomersAsync()"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
       </th>
     </tr>
   </thead>
@@ -17,8 +17,8 @@
     <tr *ngFor="let customer of customers">
       <td>{{ customer.id }}</td>
       <td>{{ customer.name }}</td>
-      <td><input type="button" value="-" (click)="deleteCustomerAsync(customer.id)"/></td>
-      <td><input type="button" value="Edit customer" (click)="editCustomerAsync(customer.id)"/></td>
+      <td><button (click)="deleteCustomerAsync(customer.id)"><i class="fa-solid fa-minus"></i></button></td>
+      <td><button (click)="editCustomerAsync(customer.id)"><i class="fa-solid fa-pen"></i> Edit customer</button></td>
     </tr>
   </tbody>
 </table>

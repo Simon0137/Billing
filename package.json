@@ -4,6 +4,13 @@
   "scripts": {
     "watch": "cd ClientApp&&ng build --watch --configuration development"
   },
-  "private": true
-, "-vs-binding":{"ProjectOpened":["watch"]}
+  "private": true,
+  "-vs-binding": {
+    "ProjectOpened": [
+      "watch"
+    ]
+  },
+  "dependencies": {
+    "@angular/material": "^16.2.9"
+  }
 }

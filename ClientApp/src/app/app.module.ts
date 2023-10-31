@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button'
+import { MatCardModule } from '@angular/material/card'
 
 import { AppComponent } from './app.component';
 import { CustomersTableComponent } from './components/customers/customers-table/customers-table.component';
@@ -24,7 +25,8 @@ import { EditCustomerComponent } from './components/customers/edit-customer/edit
       { path: 'edit-customer/:id', component: EditCustomerComponent },
       { path: 'edit-customer', component: EditCustomerComponent }
     ]),
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

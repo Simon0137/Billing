@@ -8,8 +8,8 @@
       <th>Id</th>
       <th>Name</th>
       <th>
-        <button (click)="addCustomerAsync()"><i class="fa-solid fa-user"></i> Add new customer</button>
-        <button (click)="updateCustomersAsync()"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
+        <button mat-raised-button (click)="addCustomerAsync()"><i class="fa-solid fa-user"></i> Add new customer</button>
+        <button mat-raised-button (click)="updateCustomersAsync()"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
       </th>
     </tr>
   </thead>
@@ -18,7 +18,7 @@
       <td>{{ customer.id }}</td>
       <td>{{ customer.name }}</td>
       <td><button mat-stroked-button (click)="deleteCustomerAsync(customer.id)"><i class="fa-solid fa-minus"></i></button></td>
-      <td><button (click)="editCustomerAsync(customer.id)"><i class="fa-solid fa-pen"></i> Edit customer</button></td>
+      <td><button mat-stroked-button (click)="editCustomerAsync(customer.id)"><i class="fa-solid fa-pen"></i> Edit customer</button></td>
     </tr>
   </tbody>
 </table>

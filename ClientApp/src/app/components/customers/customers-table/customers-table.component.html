@@ -17,7 +17,7 @@
     <tr *ngFor="let customer of customers">
       <td>{{ customer.id }}</td>
       <td>{{ customer.name }}</td>
-      <td><button (click)="deleteCustomerAsync(customer.id)"><i class="fa-solid fa-minus"></i></button></td>
+      <td><button mat-stroked-button (click)="deleteCustomerAsync(customer.id)"><i class="fa-solid fa-minus"></i></button></td>
       <td><button (click)="editCustomerAsync(customer.id)"><i class="fa-solid fa-pen"></i> Edit customer</button></td>
     </tr>
   </tbody>

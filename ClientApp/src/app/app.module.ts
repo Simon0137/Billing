@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button'
 import { MatCardModule } from '@angular/material/card'
+import { MatInput, MatInputModule } from '@angular/material/input'
 
 import { AppComponent } from './app.component';
 import { CustomersTableComponent } from './components/customers/customers-table/customers-table.component';
@@ -26,7 +27,8 @@ import { EditCustomerComponent } from './components/customers/edit-customer/edit
       { path: 'edit-customer', component: EditCustomerComponent }
     ]),
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

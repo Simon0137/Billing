@@ -1,15 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+
 import { MatButtonModule } from '@angular/material/button'
 import { MatCardModule } from '@angular/material/card'
-import { MatInput, MatInputModule } from '@angular/material/input'
+import { MatInputModule } from '@angular/material/input'
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { AppComponent } from './app.component';
 import { CustomersTableComponent } from './components/customers/customers-table/customers-table.component';
 import { EditCustomerComponent } from './components/customers/edit-customer/edit-customer.component';
+
 
 @NgModule({
   declarations: [
@@ -20,15 +23,20 @@ import { EditCustomerComponent } from './components/customers/edit-customer/edit
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+
     FormsModule,
+    ReactiveFormsModule,
+
     RouterModule.forRoot([
       { path: '', component: CustomersTableComponent, pathMatch: 'full' },
       { path: 'edit-customer/:id', component: EditCustomerComponent },
       { path: 'edit-customer', component: EditCustomerComponent }
     ]),
+
     MatButtonModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

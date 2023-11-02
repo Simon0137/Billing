@@ -4,6 +4,7 @@ import { Customer } from '../../../models/customer';
 import { Location } from '@angular/common'
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-customer',
@@ -12,6 +13,7 @@ import { Subscription } from 'rxjs';
 })
 export class EditCustomerComponent {
   public model?: Customer;
+  public nameFormControl = new FormControl('', [Validators.required])
   private _subscription: Subscription;
 
   constructor(private customersService: CustomersService, private location: Location, private activatedRoute: ActivatedRoute) {

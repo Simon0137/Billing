@@ -9,15 +9,20 @@ import { FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-edit-customer',
   templateUrl: './edit-customer.component.html',
+  styleUrls: ['./edit-customer.component.scss'],
   providers: [CustomersService]
 })
+
 export class EditCustomerComponent {
   public model?: Customer;
   public nameFormControl = new FormControl('', [Validators.required])
   private _subscription: Subscription;
 
-  constructor(private customersService: CustomersService, private location: Location, private activatedRoute: ActivatedRoute) {
-    this._subscription = activatedRoute.params.subscribe(params => this.loadCustomerAsync(params['id']));
+  constructor(
+    private customersService: CustomersService,
+    private location: Location,
+    private activatedRoute: ActivatedRoute) {
+      this._subscription = activatedRoute.params.subscribe(params => this.loadCustomerAsync(params['id']));
   }
 
   private async loadCustomerAsync(id?: number) {

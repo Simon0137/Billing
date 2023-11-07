@@ -3,6 +3,10 @@ import { Customer } from '../../../models/customer';
 import { CustomersService } from '../../../services/customers.service';
 import { Router } from '@angular/router';
 
+import { MatDialog } from '@angular/material/dialog';
+
+import { ConfirmDeleteComponent } from '../../dialogs/confirm-delete/confirm-delete.component';
+
 @Component({
   selector: 'app-customers-table',
   templateUrl: './customers-table.component.html',
@@ -11,8 +15,11 @@ import { Router } from '@angular/router';
 export class CustomersTableComponent {
   public customers?: Customer[];
 
-  constructor(private customersService: CustomersService, private router: Router) {
-    this.updateCustomersAsync();
+  constructor(
+    private customersService: CustomersService,
+    private router: Router,
+    private dialog: MatDialog) {
+      this.updateCustomersAsync();
   }
 
   public async addCustomerAsync() {
@@ -24,8 +31,9 @@ export class CustomersTableComponent {
   }
 
   public async deleteCustomerAsync(id: number) {
-    await this.customersService.deleteCustomerAsync(id);
-    await this.updateCustomersAsync();
+    this.dialog.open(ConfirmDeleteComponent);
+    //await this.customersService.deleteCustomerAsync(id);
+    //await this.updateCustomersAsync();
   }
 
   public async updateCustomersAsync() {

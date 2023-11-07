@@ -5,3 +5,4 @@
     "watch": "cd ClientApp&&ng build --watch --configuration development"
   },
   "private": true
+}

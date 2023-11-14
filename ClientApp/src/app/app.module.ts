@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,6 +15,8 @@ import { AppComponent } from './app.component';
 import { CustomersTableComponent } from './components/customers/customers-table/customers-table.component';
 import { EditCustomerComponent } from './components/customers/edit-customer/edit-customer.component';
 import { ConfirmDeleteComponent } from './components/dialogs/confirm-delete/confirm-delete.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker'
 
 
 @NgModule({
@@ -25,6 +28,7 @@ import { ConfirmDeleteComponent } from './components/dialogs/confirm-delete/conf
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    BrowserAnimationsModule,
     HttpClientModule,
 
     FormsModule,
@@ -40,7 +44,9 @@ import { ConfirmDeleteComponent } from './components/dialogs/confirm-delete/conf
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
-    MatDialogModule
+    MatDialogModule,
+    MatNativeDateModule,
+    MatDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

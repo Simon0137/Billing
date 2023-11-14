@@ -21,6 +21,13 @@
           Email is <strong>required</strong>
         </mat-error>
       </mat-form-field>
+      <mat-form-field>
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="datepicker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+        <mat-datepicker #datepicker></mat-datepicker>
+      </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
       <button mat-button (click)="submitChangesAsync()">OK</button>

@@ -28,6 +28,13 @@
         <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
         <mat-datepicker #datepicker></mat-datepicker>
       </mat-form-field>
+      <section>
+        <label>Gender:</label>
+        <mat-radio-group [(ngModel)]="model.gender">
+          <mat-radio-button value="male">Male</mat-radio-button>
+          <mat-radio-button value="female">Female</mat-radio-button>
+        </mat-radio-group>
+      </section>
     </mat-card-content>
     <mat-card-actions>
       <button mat-button (click)="submitChangesAsync()">OK</button>

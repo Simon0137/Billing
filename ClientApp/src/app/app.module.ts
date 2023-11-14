@@ -16,7 +16,9 @@ import { CustomersTableComponent } from './components/customers/customers-table/
 import { EditCustomerComponent } from './components/customers/edit-customer/edit-customer.component';
 import { ConfirmDeleteComponent } from './components/dialogs/confirm-delete/confirm-delete.component';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker'
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 @NgModule({
@@ -46,7 +48,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker'
     MatFormFieldModule,
     MatDialogModule,
     MatNativeDateModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatCheckboxModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

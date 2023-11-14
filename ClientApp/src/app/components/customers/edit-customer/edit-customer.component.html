@@ -35,6 +35,14 @@
           <mat-radio-button value="female">Female</mat-radio-button>
         </mat-radio-group>
       </section>
+      <mat-form-field>
+        <mat-label>Tariff Plan</mat-label>
+        <mat-select [(ngModel)]="model.tariffPlan">
+          <mat-option value="free">Free</mat-option>
+          <mat-option value="basic">Basic</mat-option>
+          <mat-option value="premium">Premium</mat-option>
+        </mat-select>
+      </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
       <button mat-button (click)="submitChangesAsync()">OK</button>

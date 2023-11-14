@@ -3,5 +3,6 @@ export interface Customer {
   name?: string;
   email?: string;
 
-  gender?: string;
+  gender?: 'male' | 'female';
+  tariffPlan?: 'free' | 'basic' | 'premium';
 }

@@ -14,6 +14,7 @@ import { ConfirmDeleteComponent } from '../../dialogs/confirm-delete/confirm-del
 })
 export class CustomersTableComponent {
   public customers?: Customer[];
+  private deletion: boolean = false;
 
   constructor(
     private customersService: CustomersService,
@@ -31,9 +32,14 @@ export class CustomersTableComponent {
   }
 
   public async deleteCustomerAsync(id: number) {
-    this.dialog.open(ConfirmDeleteComponent);
-    //await this.customersService.deleteCustomerAsync(id);
-    //await this.updateCustomersAsync();
+    let dialog = this.dialog.open(ConfirmDeleteComponent);
+    console.log("dialog open");
+    dialog.afterClosed().subscribe(deletion => this.deletion = deletion);
+    console.log("dialog close");
+    if (this.deletion) {
+      await this.customersService.deleteCustomerAsync(id);
+      await this.updateCustomersAsync();
+    }
   }
 
   public async updateCustomersAsync() {

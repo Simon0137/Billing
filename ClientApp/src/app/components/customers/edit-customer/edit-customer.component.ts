@@ -16,6 +16,7 @@ import { FormControl, Validators } from '@angular/forms';
 export class EditCustomerComponent {
   public model?: Customer;
   public nameFormControl = new FormControl('', [Validators.required])
+  public emailFormControl = new FormControl('', [Validators.email, Validators.required])
   private _subscription: Subscription;
 
   constructor(

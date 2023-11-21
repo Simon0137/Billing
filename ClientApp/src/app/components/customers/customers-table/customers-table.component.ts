@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 import { MatDialog } from '@angular/material/dialog';
 
-import { ConfirmDeleteComponent } from '../../dialogs/confirm-delete/confirm-delete.component';
+import { SimpleDialogComponent } from '../../dialogs/simple-dialog/simple-dialog.component';
 
 @Component({
   selector: 'app-customers-table',
@@ -14,7 +14,7 @@ import { ConfirmDeleteComponent } from '../../dialogs/confirm-delete/confirm-del
 })
 export class CustomersTableComponent {
   public customers?: Customer[];
-  private deletion: boolean = false;
+  sdialog?: SimpleDialogComponent;
 
   constructor(
     private customersService: CustomersService,
@@ -32,11 +32,7 @@ export class CustomersTableComponent {
   }
 
   public async deleteCustomerAsync(id: number) {
-    let dialog = this.dialog.open(ConfirmDeleteComponent);
-    console.log("dialog open");
-    dialog.afterClosed().subscribe(deletion => this.deletion = deletion);
-    console.log("dialog close");
-    if (this.deletion) {
+    if (await this.sdialog?.askAsync("Do you want delete this customer1?")) {
       await this.customersService.deleteCustomerAsync(id);
       await this.updateCustomersAsync();
     }

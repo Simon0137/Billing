@@ -5,7 +5,6 @@ import { lastValueFrom } from 'rxjs';
 
 @Injectable()
 export class CustomersService {
-
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
   async addCustomerAsync(customer: Customer): Promise<Customer> {

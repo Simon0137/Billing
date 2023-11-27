@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Customer } from '../../../models/customer';
 import { CustomersService } from '../../../services/customers.service';
 import { Router } from '@angular/router';
 
 import { MatDialog } from '@angular/material/dialog';
+import { MatTable } from '@angular/material/table';
+
 import { dlg } from '../../dialogs/dlg';
 
 @Component({
@@ -12,7 +14,10 @@ import { dlg } from '../../dialogs/dlg';
   providers: [CustomersService]
 })
 export class CustomersTableComponent {
-  public customers?: Customer[];
+    public customers?: Customer[];
+    public displayedColumns: string[] = ['customer-id', 'customer-name', 'buttons'];
+
+    @ViewChild(MatTable) table?: MatTable<Customer>;
 
   constructor(
     private customersService: CustomersService,
@@ -48,8 +53,9 @@ export class CustomersTableComponent {
   }
 
   public async updateCustomersAsync() {
-    this.customers = undefined;
-    this.customers = await this.customersService.loadCustomersAsync();
+      this.customers = undefined;
+      this.customers = await this.customersService.loadCustomersAsync();
+      this.table?.renderRows();
   }
 }
 

@@ -4,8 +4,7 @@ import { CustomersService } from '../../../services/customers.service';
 import { Router } from '@angular/router';
 
 import { MatDialog } from '@angular/material/dialog';
-
-import { SimpleDialogComponent } from '../../dialogs/simple-dialog/simple-dialog.component';
+import { dlg } from '../../dialogs/dlg';
 
 @Component({
   selector: 'app-customers-table',
@@ -14,12 +13,12 @@ import { SimpleDialogComponent } from '../../dialogs/simple-dialog/simple-dialog
 })
 export class CustomersTableComponent {
   public customers?: Customer[];
-  sdialog?: SimpleDialogComponent;
 
   constructor(
     private customersService: CustomersService,
     private router: Router,
-    private dialog: MatDialog) {
+    private dialog: MatDialog
+    ) {
       this.updateCustomersAsync();
   }
 
@@ -32,10 +31,20 @@ export class CustomersTableComponent {
   }
 
   public async deleteCustomerAsync(id: number) {
-    if (await this.sdialog?.askAsync("Do you want delete this customer1?")) {
+    if (await dlg.askAsync("Remove customer?")) {
       await this.customersService.deleteCustomerAsync(id);
       await this.updateCustomersAsync();
     }
+/*    let dialog = this.dialog.open(SimpleDialogComponent);
+    let deletion = await lastValueFrom(dialog.afterClosed());
+    if (deletion) {
+      await this.customersService.deleteCustomerAsync(id);
+      await this.updateCustomersAsync();
+    }
+*/    /*if (await this.sdialog.askAsync("Do you want delete this customer1?")) {
+      await this.customersService.deleteCustomerAsync(id);
+      await this.updateCustomersAsync();
+    }*/
   }
 
   public async updateCustomersAsync() {
@@ -43,5 +52,4 @@ export class CustomersTableComponent {
     this.customers = await this.customersService.loadCustomersAsync();
   }
 }
-
 

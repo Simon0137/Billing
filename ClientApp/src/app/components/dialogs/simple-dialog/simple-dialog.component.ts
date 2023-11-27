@@ -1,16 +1,23 @@
-import { Component } from "@angular/core";
-import { MatDialogRef } from "@angular/material/dialog";
+import { Component, Inject } from "@angular/core";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { lastValueFrom } from "rxjs";
+
+export interface SimpleDialogData {
+  message: string;
+  title?: string;
+}
 
 @Component({
   selector: 'simple-dialog',
   templateUrl: 'simple-dialog.component.html'
 })
 export class SimpleDialogComponent {
-  public ask: string = '';
-  public header: string = 'Confirm';
 
-  constructor(private dialogRef: MatDialogRef<SimpleDialogComponent>) { }
+  constructor(private dialogRef: MatDialogRef<SimpleDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: SimpleDialogData) {
+    data = data || {};
+    data.message = data.message || 'Choose something';
+    data.title = data.title || 'Confirm';
+  }
 
   public rejectAsk() {
     this.dialogRef.close(false);
@@ -18,12 +25,5 @@ export class SimpleDialogComponent {
 
   public approveAsk() {
     this.dialogRef.close(true);
-  }
-
-
-  async askAsync(ask: string, header: string = "Confirm") {
-    this.ask = ask;
-    this.header = header;
-    await lastValueFrom(this.dialogRef.afterClosed());
   }
 }

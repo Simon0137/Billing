@@ -36,10 +36,12 @@ export class EditCustomerComponent {
   }
 
   public async submitChangesAsync() {
-    if (this.model!.id > 0) {
-      await this.editCustomerAsync();
-    } else {
-      await this.addCustomerAsync();
+    if (!this.nameFormControl.hasError('required') || !this.emailFormControl.hasError('required')) {
+        if (this.model!.id > 0) {
+            await this.editCustomerAsync();
+        } else {
+            await this.addCustomerAsync();
+        }
     }
   }
 

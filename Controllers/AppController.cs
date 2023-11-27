@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Billing.Db;
+﻿using Billing.Db;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Billing.Controllers
 {

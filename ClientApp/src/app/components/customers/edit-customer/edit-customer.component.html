@@ -22,11 +22,14 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Choose a date</mat-label>
-        <input matInput [matDatepicker]="datepicker" [(ngModel)]="model.date">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
-        <mat-datepicker #datepicker></mat-datepicker>
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="datepicker" [(ngModel)]="model.date" [formControl]="dateFormControl">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+          <mat-datepicker #datepicker></mat-datepicker>
+          <mat-error *ngIf="dateFormControl.hasError('required')">
+              Date is <strong>required</strong>
+          </mat-error>
       </mat-form-field>
       <section>
         <label>Gender:</label>
@@ -37,11 +40,14 @@
       </section>
       <mat-form-field>
         <mat-label>Tariff Plan</mat-label>
-        <mat-select [(ngModel)]="model.tariffPlan">
+        <mat-select [(ngModel)]="model.tariffPlan" [formControl]="tariffFormControl">
           <mat-option value="free">Free</mat-option>
           <mat-option value="basic">Basic</mat-option>
           <mat-option value="premium">Premium</mat-option>
         </mat-select>
+        <mat-error *ngIf="tariffFormControl.hasError('required')">
+            Tariff plan is <strong>required</strong>
+        </mat-error>
       </mat-form-field>
     </mat-card-content>
     <mat-card-actions>

@@ -15,8 +15,11 @@ import { FormControl, Validators } from '@angular/forms';
 
 export class EditCustomerComponent {
   public model?: Customer;
-  public nameFormControl = new FormControl('', [Validators.required])
-  public emailFormControl = new FormControl('', [Validators.email, Validators.required])
+  public nameFormControl = new FormControl('', [Validators.required]);
+  public emailFormControl = new FormControl('', [Validators.email, Validators.required]);
+  public dateFormControl = new FormControl('', [Validators.required]);
+  public genderFormControl = new FormControl('', [Validators.required]);
+  public tariffFormControl = new FormControl('', [Validators.required]);
   private _subscription: Subscription;
 
   constructor(
@@ -36,7 +39,7 @@ export class EditCustomerComponent {
   }
 
   public async submitChangesAsync() {
-    if (!this.nameFormControl.hasError('required') || !this.emailFormControl.hasError('required')) {
+      if (!this.nameFormControl.hasError('required') || !this.emailFormControl.hasError('required') || !this.dateFormControl.hasError('required') || !this.tariffFormControl.hasError('required')) {
         if (this.model!.id > 0) {
             await this.editCustomerAsync();
         } else {

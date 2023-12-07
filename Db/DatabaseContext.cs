@@ -11,5 +11,7 @@ namespace Billing.Db
         }
 
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Service> Services { get; set; }
+        public DbSet<Subscribe> Subscribes { get; set; }
     }
 }

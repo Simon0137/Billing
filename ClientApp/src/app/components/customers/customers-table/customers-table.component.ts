@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { Customer } from '../../../models/customer';
 import { CustomersService } from '../../../services/customers.service';
 import { Router } from '@angular/router';
 
@@ -14,10 +13,10 @@ import { dlg } from '../../dialogs/dlg';
   providers: [CustomersService]
 })
 export class CustomersTableComponent {
-    public customers?: Customer[];
+    public customers?: App.Customer[];
     public displayedColumns: string[] = ['customer-id', 'customer-name', 'buttons'];
 
-    @ViewChild(MatTable) table?: MatTable<Customer>;
+    @ViewChild(MatTable) table?: MatTable<App.Customer>;
 
   constructor(
     private customersService: CustomersService,
@@ -37,7 +36,7 @@ export class CustomersTableComponent {
 
   public async deleteCustomerAsync(id: number) {
     if (await dlg.askAsync("Remove customer?")) {
-      await this.customersService.deleteCustomerAsync(id);
+      await this.customersService.deleteAsync(id);
       await this.updateCustomersAsync();
     }
 /*    let dialog = this.dialog.open(SimpleDialogComponent);
@@ -54,7 +53,7 @@ export class CustomersTableComponent {
 
   public async updateCustomersAsync() {
       this.customers = undefined;
-      this.customers = await this.customersService.loadCustomersAsync();
+      this.customers = await this.customersService.loadAsync();
       this.table?.renderRows();
   }
 }

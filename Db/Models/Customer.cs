@@ -1,12 +1,20 @@
-﻿namespace Billing.Db.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Billing.Db.Models;
+
+public class Customer
 {
-    public class Customer
+    public enum Genders
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public DateTime Date { get; set; }
-        public string Gender { get; set; }
-        public string TariffPlan { get; set; }
+        Undefined = 0,
+        Male = 1,
+        Female = 2
     }
+
+    [Key] public int Id { get; set; }
+    public string Name { get; set; } = "";
+    public string Email { get; set; } = "";
+    public Genders Gender { get; set; }
+
+    public ICollection<Subscribe>? Subscribes { get; set; }
 }

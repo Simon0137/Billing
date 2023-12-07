@@ -18,9 +18,10 @@ namespace Billing.Controllers
         }
 
         [HttpGet("{id}")]
-        public Task<Customer?> GetCustomerByIdAsync([FromRoute] int id, CancellationToken cancellationToken = default)
+        public async Task<Customer?> GetCustomerByIdAsync([FromRoute] int id, CancellationToken cancellationToken = default)
         {
-            return Db.Customers.FirstOrDefaultAsync(customer => customer.Id == id, cancellationToken);
+            var res = await Db.Customers.FirstOrDefaultAsync(customer => customer.Id == id, cancellationToken);
+            return res;
         }
 
         [HttpPost]

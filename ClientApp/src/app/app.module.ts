@@ -45,6 +45,7 @@ import { EditServiceComponent } from './components/services/edit-service/edit-se
 
         RouterModule.forRoot([
             { path: '', component: CustomersTableComponent, pathMatch: 'full' },
+            { path: 'services', component: ServicesTableComponent, pathMatch: 'full' },
             { path: 'edit-customer/:id', component: EditCustomerComponent },
             { path: 'edit-customer', component: EditCustomerComponent },
             { path: 'edit-service/:id', component: EditServiceComponent },

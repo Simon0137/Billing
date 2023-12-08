@@ -1,0 +1,26 @@
+<h1 id="tableLabel">Services Table</h1>
+
+<p *ngIf="!services"><em>Loading...</em></p>
+
+<table mat-table [dataSource]="services" *ngIf="services">
+    <ng-container matColumnDef="service-id">
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+    <ng-container matColumnDef="service-name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="buttons">
+        <th mat-header-cell *matHeaderCellDef>
+            <button mat-raised-button (click)="addServiceAsync()"><i class="fa-solid fa-user"></i> Add new service</button>
+            <button mat-raised-button (click)="updateServicesAsync()"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-mini-fab (click)="deleteServiceAsync(element.id)"><i class="fa-solid fa-minus"></i></button>
+            <button mat-stroked-button (click)="editServiceAsync(element.id)"><i class="fa-solid fa-pen"></i> Edit customer</button>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

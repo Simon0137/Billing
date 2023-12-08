@@ -10,12 +10,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
-
-import { AppComponent } from './app.component';
-import { CustomersTableComponent } from './components/customers/customers-table/customers-table.component';
-import { dlg } from './components/dialogs/dlg';
-import { EditCustomerComponent } from './components/customers/edit-customer/edit-customer.component';
-import { SimpleDialogComponent } from './components/dialogs/simple-dialog/simple-dialog.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -23,13 +17,21 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 
+import { AppComponent } from './app.component';
+import { CustomersTableComponent } from './components/customers/customers-table/customers-table.component';
+import { dlg } from './components/dialogs/dlg';
+import { EditCustomerComponent } from './components/customers/edit-customer/edit-customer.component';
+import { SimpleDialogComponent } from './components/dialogs/simple-dialog/simple-dialog.component';
+import { ServicesTableComponent } from './components/services/services-table/services-table.component';
+
 
 @NgModule({
     declarations: [
         AppComponent,
         CustomersTableComponent,
         EditCustomerComponent,
-        SimpleDialogComponent
+        SimpleDialogComponent,
+        ServicesTableComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

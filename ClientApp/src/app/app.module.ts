@@ -23,6 +23,7 @@ import { dlg } from './components/dialogs/dlg';
 import { EditCustomerComponent } from './components/customers/edit-customer/edit-customer.component';
 import { SimpleDialogComponent } from './components/dialogs/simple-dialog/simple-dialog.component';
 import { ServicesTableComponent } from './components/services/services-table/services-table.component';
+import { EditServiceComponent } from './components/services/edit-service/edit-service.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ServicesTableComponent } from './components/services/services-table/ser
         CustomersTableComponent,
         EditCustomerComponent,
         SimpleDialogComponent,
-        ServicesTableComponent
+        ServicesTableComponent,
+        EditServiceComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -44,7 +46,9 @@ import { ServicesTableComponent } from './components/services/services-table/ser
         RouterModule.forRoot([
             { path: '', component: CustomersTableComponent, pathMatch: 'full' },
             { path: 'edit-customer/:id', component: EditCustomerComponent },
-            { path: 'edit-customer', component: EditCustomerComponent }
+            { path: 'edit-customer', component: EditCustomerComponent },
+            { path: 'edit-service/:id', component: EditServiceComponent },
+            { path: 'edit-service', component: EditServiceComponent }
         ]),
 
         MatButtonModule,

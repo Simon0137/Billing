@@ -16,6 +16,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { AppComponent } from './app.component';
 import { CustomersTableComponent } from './components/customers/customers-table/customers-table.component';
@@ -24,6 +25,7 @@ import { EditCustomerComponent } from './components/customers/edit-customer/edit
 import { SimpleDialogComponent } from './components/dialogs/simple-dialog/simple-dialog.component';
 import { ServicesTableComponent } from './components/services/services-table/services-table.component';
 import { EditServiceComponent } from './components/services/edit-service/edit-service.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 @NgModule({
@@ -33,7 +35,8 @@ import { EditServiceComponent } from './components/services/edit-service/edit-se
         EditCustomerComponent,
         SimpleDialogComponent,
         ServicesTableComponent,
-        EditServiceComponent
+        EditServiceComponent,
+        NavbarComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -44,8 +47,9 @@ import { EditServiceComponent } from './components/services/edit-service/edit-se
         ReactiveFormsModule,
 
         RouterModule.forRoot([
-            { path: '', component: CustomersTableComponent, pathMatch: 'full' },
-            { path: 'services', component: ServicesTableComponent, pathMatch: 'full' },
+            { path: '', redirectTo: '/customers', pathMatch: 'full' },
+            { path: 'customers', component: CustomersTableComponent },
+            { path: 'services', component: ServicesTableComponent },
             { path: 'edit-customer/:id', component: EditCustomerComponent },
             { path: 'edit-customer', component: EditCustomerComponent },
             { path: 'edit-service/:id', component: EditServiceComponent },
@@ -62,7 +66,8 @@ import { EditServiceComponent } from './components/services/edit-service/edit-se
         MatCheckboxModule,
         MatRadioModule,
         MatSelectModule,
-        MatTableModule
+        MatTableModule,
+        MatToolbarModule
     ],
     providers: [],
     bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
 using Billing.Db;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 namespace Billing
 {
@@ -11,7 +12,9 @@ namespace Billing
 
             // Add services to the container.
 
-            builder.Services.AddControllersWithViews();
+            builder.Services
+                .AddControllersWithViews()
+                .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
             builder.Services.AddDbContext<DatabaseContext>(options =>
             {
                 options.UseSqlite(builder.Configuration.GetConnectionString("ApplicationDb"));

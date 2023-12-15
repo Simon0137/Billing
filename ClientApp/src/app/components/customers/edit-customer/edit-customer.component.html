@@ -1,37 +1,76 @@
 <ng-container *ngIf="model">
-    <pre>{{form.value | json}}</pre>
     <form [formGroup]="form">
         <mat-card>
             <mat-card-header>
                 <mat-card-title><h3>Add new customer</h3></mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <mat-form-field>
-                    <mat-label>Customer Name</mat-label>
-                    <input matInput formControlName="name" placeholder="Please enter a name">
-                    <mat-error *ngIf="form.controls.name.hasError('required')">
-                        Name is <strong>required</strong>
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Customer Email</mat-label>
-                    <input matInput formControlName="email" placeholder="Ex. mail@gmail.com">
-                    <mat-error *ngIf="form.controls.email.hasError('email') && !form.controls.email.hasError('required')">
-                        Please enter a valid email adress
-                    </mat-error>
-                    <mat-error *ngIf="form.controls.email.hasError('required')">
-                        Email is <strong>required</strong>
-                    </mat-error>
-                </mat-form-field>
-                <section>
-                    <label>Gender:</label>
-                    <mat-radio-group formControlName="gender">
-                        <mat-radio-button [value]="1">Male</mat-radio-button>
-                        <mat-radio-button [value]="2">Female</mat-radio-button>
-                    </mat-radio-group>
-                </section>
+                <mat-tab-group animationDuration="500ms">
+                    <mat-tab label="Edit customer">
+                        <!--Customer Name-->
+                        <mat-form-field>
+                            <mat-label>Customer Name</mat-label>
+                            <input matInput formControlName="name" placeholder="Please enter a name">
+                            <mat-error *ngIf="form.controls.name.hasError('required')">
+                                Name is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <!--Customer Email-->
+                        <mat-form-field>
+                            <mat-label>Customer Email</mat-label>
+                            <input matInput formControlName="email" placeholder="Ex. mail@gmail.com">
+                            <mat-error *ngIf="form.controls.email.hasError('email') && !form.controls.email.hasError('required')">
+                                Please enter a valid email adress
+                            </mat-error>
+                            <mat-error *ngIf="form.controls.email.hasError('required')">
+                                Email is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <!--Gender-->
+                        <section>
+                            <label>Gender:</label>
+                            <mat-radio-group formControlName="gender">
+                                <mat-radio-button [value]="1">Male</mat-radio-button>
+                                <mat-radio-button [value]="2">Female</mat-radio-button>
+                            </mat-radio-group>
+                        </section>
+                    </mat-tab>
+                    <mat-tab label="Customer's subscribes">
+                        <table mat-table [dataSource]="model.subscribes" *ngIf="model.subscribes">
+                            <!--Service Name Column-->
+                            <ng-container matColumnDef="sub-service-name">
+                                <th mat-header-cell *matHeaderCellDef>Name</th>
+                                <td mat-cell *matCellDef="let element">{{ element.service.name }}</td>
+                            </ng-container>
+
+                            <!--Tariff Column-->
+                            <ng-container matColumnDef="sub-tariff">
+                                <th mat-header-cell *matHeaderCellDef>Tariff</th>
+                                <td mat-cell *matCellDef="let element">{{ element.tariff }}</td>
+                            </ng-container>
+
+                            <!--Start Date Column-->
+                            <ng-container matColumnDef="sub-start-date">
+                                <th mat-header-cell *matHeaderCellDef>Start Date</th>
+                                <td mat-cell *matCellDef="let element">{{ element.startDate }}</td>
+                            </ng-container>
+
+                            <!--End Date Column-->
+                            <ng-container matColumnDef="sub-end-date">
+                                <th mat-header-cell *matHeaderCellDef>End Date</th>
+                                <td mat-cell *matCellDef="let element">{{ element.endDate }}</td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns" sticky></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                    </mat-tab>
+                </mat-tab-group>
+                
             </mat-card-content>
-            <mat-card-actions>
+            <mat-card-actions align="end">
                 <button mat-button (click)="submitChangesAsync()">OK</button>
                 <button mat-button (click)="cancel()">Cancel</button>
             </mat-card-actions>

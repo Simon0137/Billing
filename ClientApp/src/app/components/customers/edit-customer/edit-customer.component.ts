@@ -1,30 +1,35 @@
 import { Component, OnDestroy } from '@angular/core';
-import { CustomersService } from '../../../services/customers.service';
 import { Location } from '@angular/common'
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { CustomersService } from '../../../services/customers.service';
+import { SubscribesService } from '../../../services/subscribes.service';
+import { ServicesService } from '../../../services/services.service';
 
 @Component({
     selector: 'app-edit-customer',
     templateUrl: './edit-customer.component.html',
     styleUrls: ['./edit-customer.component.scss'],
-    providers: [CustomersService]
+    providers: [CustomersService, SubscribesService, ServicesService]
 })
 
 export class EditCustomerComponent implements OnDestroy {
     public model!: App.Customer;
     private _subscription: Subscription;
+    public displayedColumns: string[] = ['sub-service-name', 'sub-tariff', 'sub-start-date', 'sub-end-date'];
     public form;
     public defaultModel: App.Customer = {
         id: 0,
         name: '',
         email: '',
-        gender: 0
+        gender: 0,
+        subscribes: undefined
     };
     
     constructor(
         private customersService: CustomersService,
+        private subscribesService: SubscribesService,
         private location: Location,
         activatedRoute: ActivatedRoute,
         private fb: FormBuilder) {
@@ -46,6 +51,8 @@ export class EditCustomerComponent implements OnDestroy {
         console.log('Loading customer: ', id);
         if (id) {
             this.model = await this.customersService.loadByIdAsync(id) || this.defaultModel;
+            this.model.subscribes = await this.subscribesService.loadByCustomerIdAsync(id) || undefined;
+            debugger;
         } else {
             this.model = this.defaultModel;
         }

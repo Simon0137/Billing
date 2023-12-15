@@ -1,5 +1,4 @@
 <ng-container *ngIf="model">
-    <pre>{{form.value | json}}</pre>
     <form [formGroup]="form">
         <mat-card>
             <mat-card-header>
@@ -18,7 +17,7 @@
                     <textarea matInput formControlName="description" placeholder="Leave a description"></textarea>
                 </mat-form-field>
             </mat-card-content>
-            <mat-card-actions>
+            <mat-card-actions align="end">
                 <button mat-button (click)="submitChangesAsync()">OK</button>
                 <button mat-button (click)="cancel()">Cancel</button>
             </mat-card-actions>

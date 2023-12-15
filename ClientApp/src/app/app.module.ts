@@ -17,6 +17,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { AppComponent } from './app.component';
 import { CustomersTableComponent } from './components/customers/customers-table/customers-table.component';
@@ -25,7 +26,7 @@ import { EditCustomerComponent } from './components/customers/edit-customer/edit
 import { SimpleDialogComponent } from './components/dialogs/simple-dialog/simple-dialog.component';
 import { ServicesTableComponent } from './components/services/services-table/services-table.component';
 import { EditServiceComponent } from './components/services/edit-service/edit-service.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { NavbarComponent } from './components/main-navbar/main-navbar.component';
 
 
 @NgModule({
@@ -67,7 +68,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
         MatRadioModule,
         MatSelectModule,
         MatTableModule,
-        MatToolbarModule
+        MatToolbarModule,
+        MatTabsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

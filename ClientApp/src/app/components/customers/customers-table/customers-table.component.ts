@@ -10,11 +10,13 @@ import { dlg } from '../../dialogs/dlg';
 @Component({
     selector: 'app-customers-table',
     templateUrl: './customers-table.component.html',
+    styleUrls: ['./customers-table.component.scss'],
     providers: [CustomersService]
 })
 export class CustomersTableComponent {
     public customers?: App.Customer[];
-    public displayedColumns: string[] = ['customer-id', 'customer-name', 'buttons'];
+    public displayedColumns: string[] = ['customer-id', 'customer-name'];
+    public chosenId: number = 0;
 
     @ViewChild(MatTable) table?: MatTable<App.Customer>;
 

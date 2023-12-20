@@ -27,6 +27,7 @@ import { SimpleDialogComponent } from './components/dialogs/simple-dialog/simple
 import { ServicesTableComponent } from './components/services/services-table/services-table.component';
 import { EditServiceComponent } from './components/services/edit-service/edit-service.component';
 import { NavbarComponent } from './components/main-navbar/main-navbar.component';
+import { ObjectsTableComponent } from './components/objects-table/objects-table.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { NavbarComponent } from './components/main-navbar/main-navbar.component'
         SimpleDialogComponent,
         ServicesTableComponent,
         EditServiceComponent,
-        NavbarComponent
+        NavbarComponent,
+        ObjectsTableComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

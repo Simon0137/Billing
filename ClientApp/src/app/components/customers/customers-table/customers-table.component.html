@@ -3,7 +3,7 @@
 <button mat-raised-button (click)="addCustomerAsync()"><i class="fa-solid fa-user"></i> Add new customer</button>
 <button mat-raised-button (click)="deleteCustomerAsync(chosenId)" [disabled]="!chosenId"><i class="fa-solid fa-minus"></i> Delete chosen customer</button>
 <button mat-raised-button (click)="editCustomerAsync(chosenId)" [disabled]="!chosenId"><i class="fa-solid fa-pen"></i> Edit chosen customer</button>
-<button mat-raised-button (click)="updateCustomersAsync()"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
+<button mat-raised-button (click)="updateCustomersAsync()" color="primary"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
 
 <p *ngIf="!customers"><em>Loading...</em></p>
 

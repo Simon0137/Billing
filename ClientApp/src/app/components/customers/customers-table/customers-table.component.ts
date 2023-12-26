@@ -44,6 +44,7 @@ export class CustomersTableComponent {
     }
 
     public async updateCustomersAsync() {
+        this.chosenId = 0;
         this.customers = undefined;
         this.customers = await this.customersService.loadAsync();
         this.table?.renderRows();

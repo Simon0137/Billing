@@ -49,5 +49,14 @@ export class CustomersTableComponent {
         this.customers = await this.customersService.loadAsync();
         this.table?.renderRows();
     }
+
+    public onRowClicked(id: number) {
+        this.chosenId = id;
+        this.table?.renderRows();
+    }
+
+    public isRowSelected(id: number): boolean {
+        return this.chosenId === id;
+    }
 }
 

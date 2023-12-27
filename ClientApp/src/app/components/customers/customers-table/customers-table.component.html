@@ -1,13 +1,13 @@
 <h1 id="tableLabel">Customers</h1>
 
 <button mat-raised-button (click)="addCustomerAsync()"><i class="fa-solid fa-user"></i> Add new customer</button>
-<button mat-raised-button (click)="deleteCustomerAsync(chosenId)" [disabled]="!chosenId"><i class="fa-solid fa-minus"></i> Delete chosen customer</button>
 <button mat-raised-button (click)="editCustomerAsync(chosenId)" [disabled]="!chosenId"><i class="fa-solid fa-pen"></i> Edit chosen customer</button>
+<button mat-raised-button (click)="deleteCustomerAsync(chosenId)" [disabled]="!chosenId"><i class="fa-solid fa-minus"></i> Delete chosen customer</button>
 <button mat-raised-button (click)="updateCustomersAsync()" color="primary"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
 
 <p *ngIf="!customers"><em>Loading...</em></p>
 
-<table mat-table [dataSource]="customers" *ngIf="customers">
+<table mat-table [dataSource]="customers" class="mat-elevation-z8" *ngIf="customers">
     <!--Id Column-->
     <ng-container matColumnDef="customer-id">
         <th mat-header-cell *matHeaderCellDef>Id</th>
@@ -21,5 +21,9 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns" sticky></tr>
-    <tr mat-row (click)="chosenId = row.id" [class.row-is-clicked]="chosenId==row.id" *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr
+        mat-row (click)="onRowClicked(row.id)"
+        [class.row-is-selected]="isRowSelected(row.id)"
+        *matRowDef="let row; columns: displayedColumns;">
+    </tr>
 </table>

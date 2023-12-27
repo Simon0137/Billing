@@ -19,6 +19,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
 
+import { DatePipe } from '@angular/common';
+
 import { AppComponent } from './app.component';
 import { CustomersTableComponent } from './components/customers/customers-table/customers-table.component';
 import { dlg } from './components/dialogs/dlg';
@@ -28,6 +30,7 @@ import { ServicesTableComponent } from './components/services/services-table/ser
 import { EditServiceComponent } from './components/services/edit-service/edit-service.component';
 import { NavbarComponent } from './components/main-navbar/main-navbar.component';
 import { ObjectsTableComponent } from './components/objects-table/objects-table.component';
+import { SubscribesTableComponent } from './components/subscribes/subscribes-table/subscribes-table.component';
 
 
 @NgModule({
@@ -39,7 +42,8 @@ import { ObjectsTableComponent } from './components/objects-table/objects-table.
         ServicesTableComponent,
         EditServiceComponent,
         NavbarComponent,
-        ObjectsTableComponent
+        ObjectsTableComponent,
+        SubscribesTableComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -58,6 +62,8 @@ import { ObjectsTableComponent } from './components/objects-table/objects-table.
             { path: 'edit-service/:id', component: EditServiceComponent },
             { path: 'edit-service', component: EditServiceComponent }
         ]),
+
+        DatePipe,
 
         MatButtonModule,
         MatCardModule,

@@ -1,0 +1,28 @@
+<table mat-table [dataSource]="subscribes" *ngIf="subscribes">
+    <!--Service Name Column-->
+    <ng-container matColumnDef="sub-service-name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.service.name }}</td>
+    </ng-container>
+
+    <!--Tariff Column-->
+    <ng-container matColumnDef="sub-tariff">
+        <th mat-header-cell *matHeaderCellDef>Tariff</th>
+        <td mat-cell *matCellDef="let element">{{ element.tariff }}</td>
+    </ng-container>
+
+    <!--Start Date Column-->
+    <ng-container matColumnDef="sub-start-date">
+        <th mat-header-cell *matHeaderCellDef>Start Date</th>
+        <td mat-cell *matCellDef="let element">{{ element.startDate | date:"dd.MM.yyyy" }}</td>
+    </ng-container>
+
+    <!--End Date Column-->
+    <ng-container matColumnDef="sub-end-date">
+        <th mat-header-cell *matHeaderCellDef>End Date</th>
+        <td mat-cell *matCellDef="let element">{{ element.endDate | date:"dd.MM.yyyy" }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" sticky></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

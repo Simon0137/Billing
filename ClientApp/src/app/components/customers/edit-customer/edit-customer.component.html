@@ -29,13 +29,13 @@
                         </mat-form-field>
 
                         <!--Gender-->
-                        <section>
-                            <label>Gender:</label>
+                        <div>
+                            <mat-label>Gender:</mat-label>
                             <mat-radio-group formControlName="gender">
                                 <mat-radio-button [value]="1">Male</mat-radio-button>
                                 <mat-radio-button [value]="2">Female</mat-radio-button>
                             </mat-radio-group>
-                        </section>
+                        </div>
                     </mat-tab>
                     <mat-tab label="Customer's subscribes">
                         <app-sub-table [subscribes]="model.subscribes"></app-sub-table>

@@ -1,0 +1,7 @@
+$darken-hovered-percent: 10;
+
+$primary-color: #3f51b5;
+$primary-color-hovered: darken($primary-color, $darken-hovered-percent);
+
+$table-row-color: white;
+$table-row-color-hovered: darken($table-row-color, $darken-hovered-percent);

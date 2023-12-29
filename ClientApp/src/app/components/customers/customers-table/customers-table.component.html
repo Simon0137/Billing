@@ -1,9 +1,31 @@
 <h1 id="tableLabel">Customers</h1>
 
-<button mat-raised-button (click)="addCustomerAsync()"><i class="fa-solid fa-user"></i> Add new customer</button>
-<button mat-raised-button (click)="editCustomerAsync(chosenId)" [disabled]="!chosenId"><i class="fa-solid fa-pen"></i> Edit chosen customer</button>
-<button mat-raised-button (click)="deleteCustomerAsync(chosenId)" [disabled]="!chosenId"><i class="fa-solid fa-minus"></i> Delete chosen customer</button>
-<button mat-raised-button (click)="updateCustomersAsync()" color="primary"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
+<div style="margin-bottom: 10px">
+    <button mat-raised-button
+            matTooltip="Add new customer"
+            (click)="addCustomerAsync()"
+            color="accent">
+        <mat-icon>person_add</mat-icon>
+    </button>
+    <button mat-raised-button
+            matTooltip="Edit chosen customer"
+            (click)="editCustomerAsync(chosenId)"
+            [disabled]="!chosenId">
+        <mat-icon>manage_accounts</mat-icon>
+    </button>
+    <button mat-raised-button
+            matTooltip="Delete chosen customer"
+            (click)="deleteCustomerAsync(chosenId)"
+            [disabled]="!chosenId">
+        <mat-icon>person_remove</mat-icon>
+    </button>
+    <button mat-raised-button
+            matTooltip="Refresh"
+            (click)="updateCustomersAsync()"
+            color="primary">
+        <mat-icon>refresh</mat-icon>
+    </button>
+</div>
 
 <p *ngIf="!customers"><em>Loading...</em></p>
 

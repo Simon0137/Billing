@@ -52,7 +52,6 @@ export class EditCustomerComponent implements OnDestroy {
         if (id) {
             this.model = await this.customersService.loadByIdAsync(id) || this.defaultModel;
             this.model.subscribes = await this.subscribesService.loadByCustomerIdAsync(id) || undefined;
-            debugger;
         } else {
             this.model = this.defaultModel;
         }

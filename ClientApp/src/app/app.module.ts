@@ -18,6 +18,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIconModule } from '@angular/material/icon';
 
 import { DatePipe } from '@angular/common';
 
@@ -77,7 +79,9 @@ import { SubscribesTableComponent } from './components/subscribes/subscribes-tab
         MatSelectModule,
         MatTableModule,
         MatToolbarModule,
-        MatTabsModule
+        MatTabsModule,
+        MatTooltipModule,
+        MatIconModule
     ],
     providers: [],
     bootstrap: [AppComponent]

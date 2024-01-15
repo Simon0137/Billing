@@ -1,3 +1,30 @@
+<div style="margin-bottom: 10px">
+    <button mat-raised-button
+            matTooltip="Add new subscribe"
+            (click)="addSubscribeAsync()"
+            color="accent">
+        <mat-icon>person_add</mat-icon>
+    </button>
+    <button mat-raised-button
+            matTooltip="Edit chosen subscribe"
+            (click)="editSubscribeAsync(chosenId)"
+            [disabled]="!chosenId">
+        <mat-icon>settings</mat-icon>
+    </button>
+    <button mat-raised-button
+            matTooltip="Delete chosen subscribe"
+            (click)="deleteSubscribeAsync(chosenId)"
+            [disabled]="!chosenId">
+        <mat-icon>delete</mat-icon>
+    </button>
+    <button mat-raised-button
+            matTooltip="Refresh"
+            (click)="updateSubscribesAsync()"
+            color="primary">
+        <mat-icon>refresh</mat-icon>
+    </button>
+</div>
+
 <table mat-table [dataSource]="subscribes" *ngIf="subscribes">
     <!--Service Name Column-->
     <ng-container matColumnDef="sub-service-name">
@@ -24,5 +51,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns" sticky></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row (click)="onRowClicked(row.id)"
+        [class.row-is-selected]="isRowSelected(row.id)"
+        *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>

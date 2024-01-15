@@ -1,8 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { CustomersService } from '../../../services/customers.service';
 import { Router } from '@angular/router';
-
-import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 
 import { dlg } from '../../dialogs/dlg';
@@ -22,8 +20,7 @@ export class CustomersTableComponent {
 
     constructor(
         private customersService: CustomersService,
-        private router: Router,
-        private dialog: MatDialog
+        private router: Router
     ) {
         this.updateCustomersAsync();
     }

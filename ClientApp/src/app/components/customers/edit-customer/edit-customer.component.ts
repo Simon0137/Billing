@@ -16,6 +16,7 @@ import { ServicesService } from '../../../services/services.service';
 
 export class EditCustomerComponent implements OnDestroy {
     public model!: App.Customer;
+    public customerId: number = 0;
     private _subscription: Subscription;
     public displayedColumns: string[] = ['sub-service-name', 'sub-tariff', 'sub-start-date', 'sub-end-date'];
     public form;
@@ -39,7 +40,10 @@ export class EditCustomerComponent implements OnDestroy {
             email: ['', [Validators.email, Validators.required]],
             gender: [0, Validators.required]
         });
-        this._subscription = activatedRoute.params.subscribe(params => this.loadCustomerAsync(params['id']));
+        this._subscription = activatedRoute.params.subscribe(params => {
+            this.customerId = params['id'];
+            return this.loadCustomerAsync(this.customerId);
+        });
     }
 
     ngOnDestroy() {

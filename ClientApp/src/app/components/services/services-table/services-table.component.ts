@@ -9,11 +9,13 @@ import { dlg } from '../../dialogs/dlg';
 @Component({
     selector: 'app-services-table',
     templateUrl: './services-table.component.html',
+    styleUrls: ['services-table.component.scss'],
     providers: [ServicesService]
 })
 export class ServicesTableComponent {
     public services?: App.Service[];
-    public displayedColumns: string[] = ['service-id', 'service-name', 'buttons'];
+    public displayedColumns: string[] = ['service-id', 'service-name'];
+    public chosenId: number = 0;
 
     @ViewChild(MatTable) table?: MatTable<App.Service>;
 
@@ -43,6 +45,15 @@ export class ServicesTableComponent {
         this.services = undefined;
         this.services = await this.servicesService.loadAsync();
         this.table?.renderRows();
+    }
+
+    public onRowClicked(id: number) {
+        this.chosenId = id;
+        this.table?.renderRows();
+    }
+
+    public isRowSelected(id: number): boolean {
+        return this.chosenId === id;
     }
 }
 

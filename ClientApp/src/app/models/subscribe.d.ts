@@ -2,10 +2,10 @@ declare module App {
 
     module Subscribe {
         export enum TariffPlans {
-            Undefined = 0,
-            Free = 1,
-            Basic = 2,
-            Premium = 3
+            Undefined = '',
+            Free = 'Free',
+            Basic = 'Basic',
+            Premium = 'Premium'
         }
     }
 
@@ -13,7 +13,7 @@ declare module App {
         id: number;
         tariff: Subscribe.TariffPlans;
         startDate: Date;
-        endDate: Date;
+        endDate: Date | null;
         customerId: number;
         customer?: App.Customer;
         serviceId: number;

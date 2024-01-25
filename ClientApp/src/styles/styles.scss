@@ -39,3 +39,10 @@ tr.mat-mdc-row {
         }
     }
 }
+
+/* Обертка контента в карточках и табах */
+.content-wrapper {
+    padding-top: 1em;
+    overflow: hidden;
+    display: block;
+}

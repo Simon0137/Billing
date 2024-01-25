@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from "@angular/core";
+import { Component, Input, OnInit, ViewChild } from "@angular/core";
 import { MatTable } from '@angular/material/table';
 import { Router } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { SubscribesService } from '../../../services/subscribes.service';
     templateUrl: './subscribes-table.component.html',
     styleUrls: ['subscribes-table.component.scss']
 })
-export class SubscribesTableComponent {
+export class SubscribesTableComponent implements OnInit {
     @Input() subscribes?: App.Subscribe[];
     @Input() customerId: number = 0;
     public displayedColumns: string[] = ['sub-service-name', 'sub-tariff', 'sub-start-date', 'sub-end-date'];
@@ -21,7 +21,8 @@ export class SubscribesTableComponent {
     constructor(
         private subscribesService: SubscribesService,
         private router: Router
-    ) {
+    ) { }
+    ngOnInit(): void {
         this.updateSubscribesAsync();
     }
 

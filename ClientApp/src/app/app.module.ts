@@ -33,6 +33,7 @@ import { EditServiceComponent } from './components/services/edit-service/edit-se
 import { NavbarComponent } from './components/main-navbar/main-navbar.component';
 import { ObjectsTableComponent } from './components/objects-table/objects-table.component';
 import { SubscribesTableComponent } from './components/subscribes/subscribes-table/subscribes-table.component';
+import { EditSubscribeComponent } from './components/subscribes/edit-subscribe/edit-subscribe.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { SubscribesTableComponent } from './components/subscribes/subscribes-tab
         EditServiceComponent,
         NavbarComponent,
         ObjectsTableComponent,
-        SubscribesTableComponent
+        SubscribesTableComponent,
+        EditSubscribeComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -62,7 +64,9 @@ import { SubscribesTableComponent } from './components/subscribes/subscribes-tab
             { path: 'edit-customer/:id', component: EditCustomerComponent },
             { path: 'edit-customer', component: EditCustomerComponent },
             { path: 'edit-service/:id', component: EditServiceComponent },
-            { path: 'edit-service', component: EditServiceComponent }
+            { path: 'edit-service', component: EditServiceComponent },
+            { path: 'edit-subscribe/:id', component: EditSubscribeComponent },
+            { path: 'edit-subscribe', component: EditSubscribeComponent }
         ]),
 
         DatePipe,

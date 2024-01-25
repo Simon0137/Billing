@@ -2,46 +2,79 @@
     <form [formGroup]="form">
         <mat-card>
             <mat-card-header>
-                <mat-card-title><h3>Add new customer</h3></mat-card-title>
+                <mat-card-title *ngIf="!model.id"><h3>Add new customer</h3></mat-card-title>
+                <mat-card-title *ngIf="model.id"><h3>Edit customer</h3></mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <mat-tab-group animationDuration="500ms">
+                <mat-tab-group animationDuration="500ms" *ngIf="model.id">
                     <mat-tab label="Edit customer">
-                        <!--Customer Name-->
-                        <mat-form-field>
-                            <mat-label>Customer Name</mat-label>
-                            <input matInput formControlName="name" placeholder="Please enter a name">
-                            <mat-error *ngIf="form.controls.name.hasError('required')">
-                                Name is <strong>required</strong>
-                            </mat-error>
-                        </mat-form-field>
+                        <div class="content-wrapper">
+                            <!--Customer Name-->
+                            <mat-form-field>
+                                <mat-label>Customer Name</mat-label>
+                                <input matInput formControlName="name" placeholder="Please enter a name">
+                                <mat-error *ngIf="form.controls.name.hasError('required')">
+                                    Name is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
 
-                        <!--Customer Email-->
-                        <mat-form-field>
-                            <mat-label>Customer Email</mat-label>
-                            <input matInput formControlName="email" placeholder="Ex. mail@gmail.com">
-                            <mat-error *ngIf="form.controls.email.hasError('email') && !form.controls.email.hasError('required')">
-                                Please enter a valid email adress
-                            </mat-error>
-                            <mat-error *ngIf="form.controls.email.hasError('required')">
-                                Email is <strong>required</strong>
-                            </mat-error>
-                        </mat-form-field>
+                            <!--Customer Email-->
+                            <mat-form-field>
+                                <mat-label>Customer Email</mat-label>
+                                <input matInput formControlName="email" placeholder="Ex. mail@gmail.com">
+                                <mat-error *ngIf="form.controls.email.hasError('email') && !form.controls.email.hasError('required')">
+                                    Please enter a valid email adress
+                                </mat-error>
+                                <mat-error *ngIf="form.controls.email.hasError('required')">
+                                    Email is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
 
-                        <!--Gender-->
-                        <div>
-                            <mat-label>Gender:</mat-label>
-                            <mat-radio-group formControlName="gender">
-                                <mat-radio-button [value]="1">Male</mat-radio-button>
-                                <mat-radio-button [value]="2">Female</mat-radio-button>
-                            </mat-radio-group>
+                            <!--Gender-->
+                            <div>
+                                <mat-label>Gender:</mat-label>
+                                <mat-radio-group formControlName="gender">
+                                    <mat-radio-button [value]="1">Male</mat-radio-button>
+                                    <mat-radio-button [value]="2">Female</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
                         </div>
                     </mat-tab>
                     <mat-tab label="Customer's subscribes">
-                        <app-sub-table [subscribes]="model.subscribes" [customerId]="customerId"></app-sub-table>
+                        <app-sub-table class="content-wrapper" [subscribes]="model.subscribes" [customerId]="customerId"></app-sub-table>
                     </mat-tab>
                 </mat-tab-group>
-                
+                <div *ngIf="!model.id">
+                    <!--Customer Name-->
+                    <mat-form-field>
+                        <mat-label>Customer Name</mat-label>
+                        <input matInput formControlName="name" placeholder="Please enter a name">
+                        <mat-error *ngIf="form.controls.name.hasError('required')">
+                            Name is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!--Customer Email-->
+                    <mat-form-field>
+                        <mat-label>Customer Email</mat-label>
+                        <input matInput formControlName="email" placeholder="Ex. mail@gmail.com">
+                        <mat-error *ngIf="form.controls.email.hasError('email') && !form.controls.email.hasError('required')">
+                            Please enter a valid email adress
+                        </mat-error>
+                        <mat-error *ngIf="form.controls.email.hasError('required')">
+                            Email is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!--Gender-->
+                    <div>
+                        <mat-label>Gender:</mat-label>
+                        <mat-radio-group formControlName="gender">
+                            <mat-radio-button [value]="1">Male</mat-radio-button>
+                            <mat-radio-button [value]="2">Female</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
             </mat-card-content>
             <mat-card-actions align="end">
                 <button mat-button (click)="submitChangesAsync()">OK</button>

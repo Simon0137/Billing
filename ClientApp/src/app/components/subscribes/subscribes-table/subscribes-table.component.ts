@@ -14,7 +14,7 @@ export class SubscribesTableComponent implements OnInit {
     @Input() subscribes?: App.Subscribe[];
     @Input() customerId: number = 0;
     public displayedColumns: string[] = ['sub-service-name', 'sub-tariff', 'sub-start-date', 'sub-end-date'];
-    public chosenId: number = 0;
+    public currentSubscribeId: number = 0;
 
     @ViewChild(MatTable) table?: MatTable<App.Customer>;
 
@@ -27,7 +27,7 @@ export class SubscribesTableComponent implements OnInit {
     }
 
     public async addSubscribeAsync() {
-        await this.router.navigate(['edit-subscribe']);
+        await this.router.navigate(['add-subscribe', this.customerId]);
     }
 
     public async editSubscribeAsync(subscribeId: number) {
@@ -42,18 +42,18 @@ export class SubscribesTableComponent implements OnInit {
     }
 
     public async updateSubscribesAsync() {
-        this.chosenId = 0;
+        this.currentSubscribeId = 0;
         this.subscribes = undefined;
         this.subscribes = await this.subscribesService.loadByCustomerIdAsync(this.customerId);
         this.table?.renderRows();
     }
 
     public onRowClicked(id: number) {
-        this.chosenId = id;
+        this.currentSubscribeId = id;
         this.table?.renderRows();
     }
 
     public isRowSelected(id: number): boolean {
-        return this.chosenId === id;
+        return this.currentSubscribeId === id;
     }
 }

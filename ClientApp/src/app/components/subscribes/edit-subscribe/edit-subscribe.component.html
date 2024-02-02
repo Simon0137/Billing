@@ -6,58 +6,60 @@
                 <mat-card-title *ngIf="model.id"><h3>Edit subscribe</h3></mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <!--Service Name-->
-                <mat-form-field>
-                    <mat-label>Service Name</mat-label>
-                    <mat-select formControlName="serviceId" placeholder="Please choose a service">
-                        <mat-option *ngFor="let service in servicesService.loadAsync()" value="{{service.id}}">{{service.name}}</mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="form.controls.serviceId.hasError('required')">
-                        Service is <strong>required</strong>
-                    </mat-error>
-                </mat-form-field>
+                <div class="content-wrapper">
+                    <!--Service Name-->
+                    <mat-form-field>
+                        <mat-label>Service Name</mat-label>
+                        <mat-select formControlName="serviceId" placeholder="Please choose a service">
+                            <mat-option *ngFor="let service of services" [value]="service.id">{{service.name}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="form.controls.serviceId.hasError('required')">
+                            Service is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
 
-                <!--Tariff Plan-->
-                <mat-form-field>
-                    <mat-label>Tariff Plan</mat-label>
-                    <mat-select formControlName="tariff" placeholder="Please choose a tariff plan">
-                        <mat-option *ngFor="let tariff in App.Subscribe.TariffPlans" value="{{tariff}}">{{tariff}}</mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="form.controls.tariff.hasError('required')">
-                        Tariff is <strong>required</strong>
-                    </mat-error>
-                </mat-form-field>
+                    <!--Tariff Plan-->
+                    <mat-form-field>
+                        <mat-label>Tariff Plan</mat-label>
+                        <mat-select formControlName="tariff" placeholder="Please choose a tariff plan">
+                            <mat-option *ngFor="let tariff of tariffs" [value]="tariff">{{tariff}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="form.controls.tariff.hasError('required')">
+                            Tariff is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
 
-                <!--Start Date-->
-                <mat-form-field>
-                    <mat-label>Start date</mat-label>
-                    <input matInput formControlName="startDate" [matDatepicker]="datepicker" placeholder="Please choose a start date">
-                    <mat-hint>MM/DD/YYYY</mat-hint>
-                    <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
-                    <mat-datepicker #datepicker>
-                        <mat-datepicker-actions>
-                            <button mat-button matDatepickerCancel>Cancel</button>
-                            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
-                        </mat-datepicker-actions>
-                    </mat-datepicker>
-                    <mat-error *ngIf="form.controls.startDate.hasError('required')">
-                        Start date is <strong>required</strong>
-                    </mat-error>
-                </mat-form-field>
+                    <!--Start Date-->
+                    <mat-form-field>
+                        <mat-label>Start date</mat-label>
+                        <input matInput formControlName="startDate" [matDatepicker]="startpicker" placeholder="Please choose a start date">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="startpicker"></mat-datepicker-toggle>
+                        <mat-datepicker #startpicker>
+                            <mat-datepicker-actions>
+                                <button mat-button matDatepickerCancel>Cancel</button>
+                                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                            </mat-datepicker-actions>
+                        </mat-datepicker>
+                        <mat-error *ngIf="form.controls.startDate.hasError('required')">
+                            Start date is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
 
-                <!--End Date-->
-                <mat-form-field>
-                    <mat-label>End date</mat-label>
-                    <input matInput formControlName="endDate" [matDatepicker]="datepicker" placeholder="Please choose an end date">
-                    <mat-hint>MM/DD/YYYY</mat-hint>
-                    <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
-                    <mat-datepicker #datepicker>
-                        <mat-datepicker-actions>
-                            <button mat-button matDatepickerCancel>Cancel</button>
-                            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
-                        </mat-datepicker-actions>
-                    </mat-datepicker>
-                </mat-form-field>
+                    <!--End Date-->
+                    <mat-form-field>
+                        <mat-label>End date</mat-label>
+                        <input matInput formControlName="endDate" [matDatepicker]="endpicker" placeholder="Please choose an end date">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="endpicker"></mat-datepicker-toggle>
+                        <mat-datepicker #endpicker>
+                            <mat-datepicker-actions>
+                                <button mat-button matDatepickerCancel>Cancel</button>
+                                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                            </mat-datepicker-actions>
+                        </mat-datepicker>
+                    </mat-form-field>
+                </div>
             </mat-card-content>
             <mat-card-actions align="end">
                 <button mat-button (click)="submitChangesAsync()">OK</button>

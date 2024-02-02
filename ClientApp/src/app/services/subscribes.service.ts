@@ -1,6 +1,8 @@
+import { Injectable } from '@angular/core';
 import { CRUDService } from './crud.service';
 import { lastValueFrom } from 'rxjs';
 
+@Injectable()
 export class SubscribesService extends CRUDService<App.Subscribe> {
     serviceName = 'subscribes';
 

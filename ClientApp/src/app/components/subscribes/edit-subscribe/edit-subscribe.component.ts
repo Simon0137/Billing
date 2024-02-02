@@ -1,7 +1,6 @@
-import { Component, OnDestroy } from '@angular/core';
-import { Location } from '@angular/common'
+import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { SubscribesService } from '../../../services/subscribes.service';
 import { ServicesService } from '../../../services/services.service';
@@ -9,13 +8,14 @@ import { ServicesService } from '../../../services/services.service';
 @Component({
     selector: 'app-edit-subscribe',
     templateUrl: './edit-subscribe.component.html',
-    //styleUrls: ['./edit-subscribe.component.scss'],
+    styleUrls: ['./edit-subscribe.component.scss'],
     providers: [SubscribesService, ServicesService]
 })
 
-export class EditSubscribeComponent implements OnDestroy {
+export class EditSubscribeComponent {
     public model!: App.Subscribe;
-    private _subscription: Subscription;
+    public tariffs = [App.Subscribe.TariffPlans.Free, App.Subscribe.TariffPlans.Basic, App.Subscribe.TariffPlans.Premium];
+    public services!: App.Service[];
     public form;
     public defaultModel: App.Subscribe = {
         id: 0,
@@ -25,6 +25,7 @@ export class EditSubscribeComponent implements OnDestroy {
         startDate: new Date(),
         endDate: null
     };
+    mode?: 'add' | 'edit';
 
     constructor(
         private subscribesService: SubscribesService,
@@ -39,20 +40,25 @@ export class EditSubscribeComponent implements OnDestroy {
             startDate: [this.defaultModel.startDate, Validators.required],
             endDate: [this.defaultModel.endDate]
         });
-        this._subscription = activatedRoute.params.subscribe(params => this.loadSubscribeAsync(params['id']));
+
+        activatedRoute.pathFromRoot[1].url.subscribe(urlSegment => {
+            if (urlSegment[0].path == 'add-subscribe') {
+                this.mode = 'add';
+            } else if (urlSegment[0].path == 'edit-subscribe') {
+                this.mode = 'edit';
+            }
+            this.loadSubscribeAsync(parseInt(urlSegment[1].path));
+        });
+        
     }
 
-    ngOnDestroy() {
-        this._subscription.unsubscribe();
-    }
-
-    private async loadSubscribeAsync(id?: number) {
-
-        console.log('Loading subscribe: ', id);
-        if (id) {
-            this.model = await this.subscribesService.loadByIdAsync(id) || this.defaultModel;
-        } else {
+    private async loadSubscribeAsync(id: number) {
+        this.services = await this.servicesService.loadAsync();
+        if (this.mode === 'edit') {
+            this.model = await this.subscribesService.loadByIdAsync(id);
+        } else if (this.mode === 'add') {
             this.model = this.defaultModel;
+            this.model.customerId = id;
         }
         this.setFormValue();
     }

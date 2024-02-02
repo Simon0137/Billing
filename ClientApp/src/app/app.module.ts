@@ -21,7 +21,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgFor, CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { CustomersTableComponent } from './components/customers/customers-table/customers-table.component';
@@ -65,11 +65,13 @@ import { EditSubscribeComponent } from './components/subscribes/edit-subscribe/e
             { path: 'edit-customer', component: EditCustomerComponent },
             { path: 'edit-service/:id', component: EditServiceComponent },
             { path: 'edit-service', component: EditServiceComponent },
-            { path: 'edit-subscribe/:id', component: EditSubscribeComponent },
-            { path: 'edit-subscribe', component: EditSubscribeComponent }
+            { path: 'edit-subscribe/:subscribeId', component: EditSubscribeComponent },
+            { path: 'add-subscribe/:customerId', component: EditSubscribeComponent }
         ]),
 
         DatePipe,
+        NgFor,
+        CommonModule,
 
         MatButtonModule,
         MatCardModule,

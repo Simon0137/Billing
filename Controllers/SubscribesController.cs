@@ -13,7 +13,7 @@ namespace Billing.Controllers
         public async Task<ICollection<Subscribe?>> GetByCustomerIdAsync([FromRoute] int customerId, CancellationToken cancellationToken)
         {
             var res = await GetQuery()
-                .Include(s => s.Service)
+                //.Include(s => s.Service)
                 .Where(s => s.CustomerId == customerId)
                 .ToArrayAsync(cancellationToken);
             return res;

@@ -1,11 +1,11 @@
 declare module App {
 
-    module Subscribe {
-        export enum TariffPlans {
-            Undefined = '',
-            Free = 'Free',
-            Basic = 'Basic',
-            Premium = 'Premium'
+    export module Subscribe {
+        const enum TariffPlans {
+            Undefined = 0,
+            Free = 1,
+            Basic = 2,
+            Premium = 3
         }
     }
 

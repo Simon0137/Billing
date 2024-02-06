@@ -4,5 +4,8 @@
   "scripts": {
     "watch": "cd ClientApp&&ng build --watch --configuration development"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "typescript": "^5.3.3"
+  }
 }

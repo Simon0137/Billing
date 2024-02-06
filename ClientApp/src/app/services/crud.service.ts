@@ -37,7 +37,11 @@ export class CRUDService<TEntity> {
         return `${this.baseUrl}api/${this.serviceName}/${suffix || ''}`;
     }
 
-    protected resolveRefs(entities: TEntity[]): TEntity[] {
+    protected resolveRefs(entities: TEntity | TEntity[]): TEntity[] {
+        if (!Array.isArray(entities)) {
+            entities = [entities];
+        }
+
         //Реализовываем рекурсивную функцию resolve, которая будет заполнять словарь id-объектов
         const resolve = (objs: object[], dict: Record<number, HttpResponseIdObject>): void => {
             for (let obj of objs) {

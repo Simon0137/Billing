@@ -133,5 +133,8 @@
       }
     }
   },
-  "defaultProject": "Billing"
+  "defaultProject": "Billing",
+  "cli": {
+    "analytics": false
+  }
 }
